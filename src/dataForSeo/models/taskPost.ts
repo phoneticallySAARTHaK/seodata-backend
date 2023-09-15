@@ -3,7 +3,7 @@
  *
  * [Documentation](https://docs.dataforseo.com/v3/on_page/task_post/)
  */
-export type TaskPostRequestTask = {
+export type RequestTask = {
   target: string;
   max_crawl_pages: number;
   start_url?: string;
@@ -69,7 +69,7 @@ export type TaskPostRequestTask = {
  *
  * [Documentation](https://docs.dataforseo.com/v3/on_page/task_post/)
  */
-export type TaskPostResponse = {
+export type Response = {
   version: string;
   status_code: number;
   status_message: string;
@@ -77,7 +77,7 @@ export type TaskPostResponse = {
   cost: number;
   tasks_count: number;
   tasks_error: number;
-  tasks: TaskPostResponseTask[];
+  tasks: ResponseTask[];
 };
 
 /**
@@ -85,7 +85,7 @@ export type TaskPostResponse = {
  *
  * [Documentation](https://docs.dataforseo.com/v3/on_page/task_post/)
  */
-export type TaskPostResponseTask = {
+export type ResponseTask = {
   id: string;
   status_code: number;
   status_message: string;
