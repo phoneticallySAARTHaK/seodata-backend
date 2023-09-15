@@ -1,0 +1,22 @@
+:root {
+  --highlight: rgba(255, 213, 135, 0.782);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --highlight: rebeccapurple;
+  }
+}
+
+:root {
+  font-size: 16px;
+}
+
+.category__title {
+  font-weight: bold;
+}
+
+:is(a, span)[data-id*='theme'],
+:is(a, span)[data-id*='BackButton'] {
+  background-color: var(--highlight);
+}

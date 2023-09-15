@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "npm run docs & concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "docs": "typedoc && cat ./typedoc.css >> ./docs/assets/highlight.css"
   },
   "engines": {
     "node": "18.17.x"
@@ -24,6 +25,11 @@
     "concurrently": "^8.2.1",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
+    "typedoc": "^0.25.1",
+    "typedoc-plugin-extras": "^3.0.0",
+    "typedoc-plugin-mdn-links": "^3.1.0",
+    "typedoc-plugin-zod": "^1.1.0",
+    "typedoc-theme-hierarchy": "^4.1.1",
     "typescript": "^5.2.2"
   }
 }

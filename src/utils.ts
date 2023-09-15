@@ -2,7 +2,7 @@ import {
   LighthouseLiveResponse,
   LighthouseResult,
 } from "./dataForSeo/models/lighthouse";
-import { PASSWORD, USERNAME } from "./env";
+import { env } from "./env";
 
 /** Convert string to base64 */
 export function base64(str: string) {
@@ -97,7 +97,7 @@ export namespace Utils {
     TaskCreated: `Crawling initiated. You can start retrieving results using the following endpoints: summary, pages, pages_by_resource, resources, duplicate_tags, duplicate_content, links, redirect_chains, non_indexable, waterfall, keyword_density, raw_html`,
   } as const;
 
-  export const fetch = getAuthenticatedFetch(USERNAME, PASSWORD);
+  export const fetch = getAuthenticatedFetch(env.USERNAME, env.PASSWORD);
 }
 
 export function formatLighthouseLiveResponse(

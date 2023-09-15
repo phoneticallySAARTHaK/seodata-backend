@@ -1,11 +1,13 @@
 import express from "express";
 import { apiPaths, endpoints } from "./dataForSeo/endpoints";
-import { PORT } from "./env";
+import { env } from "./env";
 import { Utils, formatLighthouseLiveResponse } from "./utils";
 
 const app = express();
 
 app.use(express.json());
+
+env.DEV && app.use("/docs", express.static("docs"));
 
 Object.keys(apiPaths).forEach((_key) => {
   const key = _key as keyof typeof apiPaths;
@@ -31,6 +33,6 @@ Object.keys(apiPaths).forEach((_key) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`[server]: Server is running at http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`[server]: Server is running at http://localhost:${env.PORT}`);
 });

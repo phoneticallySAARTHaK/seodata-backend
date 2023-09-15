@@ -1,0 +1,18 @@
+{
+  "entryPoints": ["src/"],
+  "out": "docs",
+  "entryPointStrategy": "expand",
+  "gitRevision": "master",
+  "searchInComments": true,
+  "theme": "hierarchy",
+  "excludeInternal": true,
+  "plugin": [
+    "typedoc-theme-hierarchy",
+    "typedoc-plugin-mdn-links",
+    "typedoc-plugin-zod",
+    "typedoc-plugin-extras"
+  ],
+  "footerLastModified": true,
+  "footerTypedocVersion": true,
+  "favicon": "https://avatars.githubusercontent.com/u/6759814?s=48&v=4"
+}
