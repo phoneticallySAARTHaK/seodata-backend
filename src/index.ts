@@ -12,24 +12,23 @@ env.DEV && app.use("/docs", express.static("docs"));
 Object.keys(apiPaths).forEach((_key) => {
   const key = _key as keyof typeof apiPaths;
 
+  if (key === "summary") {
+    return void app.get(`/${apiPaths[key]}/:id`, async (req, res) => {
+      res.send(await Utils.fetch(`${endpoints[key]}/${req.params.id}`));
+    });
+  }
+
   app.post(`/${apiPaths[key]}`, async (req, res) => {
     const body = req.body;
 
-    if (apiPaths[key] === apiPaths.summary) {
-      const id = body.id;
-      res.send(await Utils.fetch(`${endpoints[key]}/${id}`));
-    } else {
-      const apiRes = await Utils.fetch(endpoints[key], {
-        method: "POST",
-        body,
-      });
+    const apiRes = await Utils.fetch(endpoints[key], {
+      method: "POST",
+      body,
+    });
 
-      res.send(
-        apiPaths[key] === apiPaths.lighthouse_live
-          ? formatLighthouseLiveResponse(apiRes)
-          : apiRes
-      );
-    }
+    res.send(
+      key === "lighthouse_live" ? formatLighthouseLiveResponse(apiRes) : apiRes
+    );
   });
 });
 
