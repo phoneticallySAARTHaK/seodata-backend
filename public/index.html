@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEO Insights</title>
+
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/loader.css" />
+    <link rel="stylesheet" href="styles/result.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <h1>SEO Insights</h1>
+        <p>Get SEO data for any URL.</p>
+      </header>
+
+      <form class="form">
+        <div class="url-wrapper">
+          <input
+            type="url"
+            required
+            placeholder="https://www.example.com"
+            aria-label="URL to analyze"
+            name="url"
+          />
+
+          <button type="submit">Go</button>
+        </div>
+
+        <div class="api-control-wrapper">
+          <label for="live" aria-labelledby="api_info_wrapper" class="switch">
+            <input id="live" type="checkbox" name="live" checked />
+          </label>
+
+          <div aria-live="polite" id="api_info_wrapper">
+            <div class="api-info instant">
+              <strong>Instant</strong>
+              <p>
+                Uses the <em>Lighthouse Live</em> API, which returns data in the
+                response.
+              </p>
+            </div>
+
+            <div class="api-info classic">
+              <strong>Classic</strong>
+              <p>
+                Uses the <em>Enable Browser Rendering</em> API, which does not
+                return data in the response.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+      <section class="result-container"></section>
+    </div>
+    <dialog id="loader">
+      <span class="loader"></span>
+    </dialog>
+  </body>
+</html>

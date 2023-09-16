@@ -1,0 +1,94 @@
+.progress {
+  position: relative;
+  margin: 4px;
+  float: left;
+  text-align: center;
+}
+
+.barOverflow {
+  /* Wraps the rotating .bar */
+  position: relative;
+  overflow: hidden; /* Comment this line to understand the trick */
+  width: 90px;
+  height: 45px; /* Half circle (overflow) */
+  margin-bottom: -14px; /* bring the numbers up */
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 90px; /* full circle! */
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 10px solid #eee; /* half gray, */
+  border-bottom-color: var(--color);
+  border-right-color: var(--color);
+  transform: rotate(45deg);
+
+  animation: rotate-anim 0.5s linear 0s 1 normal forwards;
+}
+
+@keyframes rotate-anim {
+  to {
+    transform: rotate(calc(45deg + var(--value)));
+  }
+}
+.result-heading {
+  text-align: center;
+}
+
+.result-content {
+  width: 100%;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin: 1rem 0rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+}
+
+.audits {
+  display: grid;
+  --gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(300px, calc((100% - 2 * var(--gap))) / 3), 1fr)
+  );
+  gap: var(--gap);
+}
+
+.audit-card {
+  border: 1px solid gainsboro;
+  border-radius: 16px;
+  padding: 0.5rem;
+}
+.audit-card .score {
+  font-weight: 600;
+  color: var(--color);
+  float: right;
+}
+
+.audit-card h6 {
+  font-size: 1rem;
+  padding-right: 3rem;
+}
+
+.audit-card .description {
+  margin-top: 0.5rem;
+  clear: both;
+}
+
+.audit-card .description > a:last-of-type {
+  display: block;
+}

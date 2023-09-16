@@ -122,11 +122,25 @@ function formatLighthouseResult({ categories, audits }: LighthouseResult) {
     ),
     audits: Object.entries(audits ?? {})
       .filter(([_key, val]) => typeof val.score === "number")
-      .map(([_key, { displayMode, title, score, description }]) => ({
-        displayMode,
-        title,
-        score,
-        description,
-      })),
+      .map(
+        ([
+          _key,
+          { scoreDisplayMode, title, score, description, displayValue },
+        ]) => ({
+          scoreDisplayMode,
+          title: parseMarkdown(title),
+          score,
+          description: parseMarkdown(description),
+          displayValue,
+        })
+      ),
   };
+}
+
+function parseMarkdown(str: string) {
+  return str
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/`([^`]*)`/g, "<code>$1</code>")
+    .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2">$1</a>');
 }

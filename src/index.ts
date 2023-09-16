@@ -9,6 +9,8 @@ app.use(express.json());
 
 env.DEV && app.use("/docs", express.static("docs"));
 
+env.MODE === "old-school" && app.use("/", express.static("public"));
+
 Object.keys(apiPaths).forEach((_key) => {
   const key = _key as keyof typeof apiPaths;
 

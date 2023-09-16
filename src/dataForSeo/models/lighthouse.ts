@@ -1,8 +1,9 @@
 export type Audit = {
   score?: null | number;
-  displayMode: string;
+  scoreDisplayMode: "binary" | "numeric" | "notApplicable" | "manual";
   title: string;
   description: string;
+  displayValue?: string;
 };
 
 export type Audits = {
