@@ -9,6 +9,10 @@ app.use(express.json());
 
 env.DEV && app.use("/docs", express.static("docs"));
 
+app.get("/", (req, res) => {
+  res.redirect("/index.html");
+});
+
 env.MODE === "old-school" && app.use("/", express.static("public"));
 
 Object.keys(apiPaths).forEach((_key) => {
