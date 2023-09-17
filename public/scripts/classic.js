@@ -39,7 +39,7 @@ export async function handleTaskPost(url) {
       body: JSON.stringify([
         {
           target: url,
-          max_crawl_pages: 1,
+          max_crawl_pages: 10,
           enable_browser_rendering: true,
           load_resources: true,
           enable_javascript: true,
