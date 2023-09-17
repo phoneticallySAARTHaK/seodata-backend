@@ -1,3 +1,4 @@
+// @ts-nocheck
 self.addEventListener("install", async (event) => {
   try {
     await caches
@@ -41,7 +42,9 @@ self.addEventListener("fetch", (e) => {
           .open("assets")
           .then((cache) =>
             cache.match(
-              e.request.mode === "navigate" ? "/index.html" : e.request
+              e.request.mode === "navigate" && !e.request.url.includes("docs")
+                ? "/index.html"
+                : e.request
             )
           )
           .then((res) => {

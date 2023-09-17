@@ -6,8 +6,9 @@ const root = document.getElementById("root");
 
 (function replace() {
   const template = document.getElementById("template");
-  root.replaceChildren(template.content.cloneNode(true));
-  template.remove();
+  template instanceof HTMLTemplateElement &&
+    root?.replaceChildren(template.content.cloneNode(true));
+  template?.remove();
 })();
 
 const loader = new Loader();
@@ -21,6 +22,10 @@ form instanceof HTMLFormElement &&
     const url = formData.get("url");
     const live = formData.get("live");
 
+    if (typeof url !== "string" || !url) {
+      return;
+    }
+
     loader.start();
 
     try {
@@ -31,7 +36,7 @@ form instanceof HTMLFormElement &&
       }
     } catch (e) {
       console.log(e);
-      window.alert(e?.message ?? "Error");
+      window.alert(e instanceof Error ? e.message : "Error");
     }
 
     loader.stop();

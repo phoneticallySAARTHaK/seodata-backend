@@ -21,26 +21,30 @@ export function ResultHeading(title) {
  */
 export function snake_case_toSentence(convertibleToString) {
   const str = "" + convertibleToString;
-  return str.at(0).toUpperCase() + str.slice(1).replace(/_/g, " ");
+  return str.at(0)?.toUpperCase() + str.slice(1).replace(/_/g, " ");
 }
 
 export class Loader {
   constructor() {
     this._dialog = document.getElementById("loader");
-    this._dialog.addEventListener(
-      "keydown",
-      (e) => e.key === "Escape" && (e.preventDefault(), e.stopPropagation())
-    );
+    if (this._dialog)
+      this._dialog.addEventListener(
+        "keydown",
+        (e) => e.key === "Escape" && (e.preventDefault(), e.stopPropagation())
+      );
   }
 
   /** Stop loader */
   stop() {
-    if (!this._dialog) this;
-    this._dialog.open && this._dialog.close();
+    this._dialog instanceof HTMLDialogElement &&
+      this._dialog.open &&
+      this._dialog.close();
   }
 
   /** Start loader */
   start() {
-    !this._dialog.open && this._dialog.showModal();
+    this._dialog instanceof HTMLDialogElement &&
+      !this._dialog.open &&
+      this._dialog.showModal();
   }
 }

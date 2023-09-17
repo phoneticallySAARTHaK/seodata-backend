@@ -1,5 +1,8 @@
 import { Loader, ResultHeading, snake_case_toSentence } from "./utils.js";
 
+/**
+ * Result Page Titles
+ */
 const resultPageNames = {
   summary: "Summary",
   pages: "Pages",
@@ -12,7 +15,7 @@ const resultPageNames = {
 const _loaderArr = [
   [
     resultPageNames.summary,
-    (ids) => fetch(`/${getEndpoint(resultPageNames.summary)}/${ids}`),
+    (id) => fetch(`/${getEndpoint(resultPageNames.summary)}/${id}`),
   ],
 ];
 
@@ -30,8 +33,12 @@ _loaderArr.push(
     ])
 );
 
+// @ts-ignore
 const resultPages = new Map(_loaderArr);
 
+/**
+ * @param {string} url
+ */
 export async function handleTaskPost(url) {
   const res = await (
     await fetch("task_post", {
@@ -127,7 +134,7 @@ function handlePageToggle(loaderFn) {
 /**
  * Renders data object to HTML
  * @param {string | undefined} key
- * @param {any} val
+ * @param {any} value
  * @returns Approriate HTML string
  */
 function renderValues(key, value) {

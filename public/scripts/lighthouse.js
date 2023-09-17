@@ -28,7 +28,7 @@ export async function handleLightHouse(url) {
   <div class="audits">${data.audits.map(AuditCard).join("")}</div>`;
 
   const section = document.querySelector(".result-container");
-  section.innerHTML = template;
+  section && (section.innerHTML = template);
 }
 
 /**
