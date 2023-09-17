@@ -5,21 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEO Insights</title>
 
-    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="styles/loader.css" />
     <link rel="stylesheet" href="styles/result.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
-    <script defer src="script.js"></script>
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          window.location.reload();
+        });
+      }
+    </script>
+
+    <link rel="modulepreload" href="scripts/index.js" />
+    <link rel="modulepreload" href="scripts/utils.js" />
+    <link rel="modulepreload" href="scripts/lighthouse.js" />
+    <link rel="modulepreload" href="scripts/classic.js" />
+    <script type="module" src="scripts/index.js"></script>
   </head>
   <body>
-    <div id="root">
+    <div id="root"></div>
+
+    <template id="template">
       <header>
         <h1>SEO Insights</h1>
         <p>Get SEO data for any URL.</p>
@@ -63,9 +80,9 @@
         </div>
       </form>
       <section class="result-container"></section>
-    </div>
-    <dialog id="loader">
-      <span class="loader"></span>
-    </dialog>
+      <dialog id="loader">
+        <span class="loader"></span>
+      </dialog>
+    </template>
   </body>
 </html>
