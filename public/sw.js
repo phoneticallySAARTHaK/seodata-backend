@@ -54,4 +54,13 @@ self.addEventListener("fetch", (e) => {
       ])
     );
   }
+
+  // APIs
+  if (e.request.mode === "same-origin") {
+    e.respondWith(
+      fetch(e.request)
+        .catch(() => caches.open("api"))
+        .then((cache) => cache.match(e.request))
+    );
+  }
 });
