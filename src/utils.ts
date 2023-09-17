@@ -60,16 +60,12 @@ export const getAuthenticatedFetch = (username: string, password: string) => {
       headers.set("Authorization", getBasicAuth(username, password));
     }
 
-    let errorFlag = false;
-
-    const res = await (
-      await fetch(resource, {
-        ...init,
-        headers,
-        body: JSON.stringify(init?.body),
-      })
-    )
-      .json()
+    const res = await fetch(resource, {
+      ...init,
+      headers,
+      body: JSON.stringify(init?.body),
+    })
+      .then((r) => r.json())
       .catch((error) => {
         console.log(error);
 

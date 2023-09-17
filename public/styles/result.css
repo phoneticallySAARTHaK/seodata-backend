@@ -61,9 +61,16 @@
 .audits {
   display: grid;
   --gap: 1rem;
+  --col-count: 4;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(max(300px, calc((100% - 2 * var(--gap))) / 3), 1fr)
+    minmax(
+      max(
+        calc(250px + 5vw),
+        calc((100% - (var(--col-count) - 1) * var(--gap))) / var(--col-count)
+      ),
+      1fr
+    )
   );
   gap: var(--gap);
 }
@@ -81,14 +88,69 @@
 
 .audit-card h6 {
   font-size: 1rem;
-  padding-right: 3rem;
+  padding-right: 2rem;
 }
 
 .audit-card .description {
   margin-top: 0.5rem;
   clear: both;
+  text-align: justify;
 }
 
-.audit-card .description > a:last-of-type {
+.audit-card .description > a:last-of-type:last-child {
   display: block;
+}
+
+.result-pages {
+  list-style-type: none;
+  line-height: 2;
+}
+
+.result-pages > li {
+  margin-top: 1rem;
+}
+
+details {
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+details:has(> summary:focus-visible) {
+  outline: var(--focus-outline);
+}
+
+details > div {
+  padding: 0.5rem;
+}
+
+summary {
+  font-weight: 600;
+  list-style: none;
+  outline: none;
+  display: flex;
+  padding: 0 0.5rem;
+}
+
+summary::after {
+  content: "⮟";
+  margin-left: auto;
+  transition: transform 0.3s linear;
+}
+
+details[open] {
+  border-color: var(--primary);
+}
+
+details[open] > summary {
+  border-bottom: 1px solid var(--primary);
+}
+
+details[open] > summary::after {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+.result-disclosure ul {
+  list-style: none;
 }

@@ -16,7 +16,7 @@ Object.keys(apiPaths).forEach((_key) => {
 
   if (key === "summary") {
     return void app.get(`/${apiPaths[key]}/:id`, async (req, res) => {
-      res.send(await Utils.fetch(`${endpoints[key]}/${req.params.id}`));
+      res.json(await Utils.fetch(`${endpoints[key]}/${req.params.id}`));
     });
   }
 
@@ -28,7 +28,7 @@ Object.keys(apiPaths).forEach((_key) => {
       body,
     });
 
-    res.send(
+    res.json(
       key === "lighthouse_live" ? formatLighthouseLiveResponse(apiRes) : apiRes
     );
   });

@@ -43,6 +43,7 @@ body {
   margin: 0px;
   display: flex;
   padding: calc(1rem + 2vw);
+  padding-bottom: 1rem;
   flex-direction: column;
 }
 
@@ -64,6 +65,12 @@ body {
 h1 {
   font-size: clamp(1.5rem, 1.5rem + 1vw, 2rem);
   margin-bottom: 0.25rem;
+}
+
+ul,
+ol,
+dl {
+  list-style: none;
 }
 
 #root {
@@ -166,7 +173,7 @@ h1 {
 }
 
 .switch:has(#live:checked) {
-  background-color: green;
+  background-color: #7db440;
 }
 
 .switch:has(#live:checked)::before {
