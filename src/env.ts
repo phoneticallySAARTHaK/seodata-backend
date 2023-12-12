@@ -3,11 +3,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export namespace env {
-  export const PORT = process.env.PORT;
-  export const USERNAME = process.env.USERNAME as string;
-  export const PASSWORD = process.env.PASSWORD as string;
-  export const DEV = process.env.NODE_ENV !== "production";
-  export const MODE = process.env.MODE as "backend" | "old-school";
+  // @ts-ignore
+  const p = process.env;
+  export const PORT = p.PORT;
+  export const USERNAME = p.USERNAME as string;
+  export const PASSWORD = p.PASSWORD as string;
+  export const DEV = p.NODE_ENV !== "production";
+  export const MODE = p.MODE as "backend" | "old-school";
 
   if (!(USERNAME && PASSWORD && PORT)) {
     throw new Error(

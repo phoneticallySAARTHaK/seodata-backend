@@ -5,14 +5,15 @@ import {
 import { env } from "./env";
 
 /** Convert string to base64 */
-export function base64(str: string) {
+export function base64(str: string): string {
+  // @ts-ignore
   return Buffer.from(str).toString("base64");
 }
 
 /**Get the Basic Auth string */
 export function getBasicAuth<
   TUsername extends string,
-  TPassword extends string
+  TPassword extends string,
 >(username: TUsername, password: TPassword) {
   return `Basic ${base64(`${username}:${password}`)}` as const;
 }
@@ -44,12 +45,12 @@ export const getAuthenticatedFetch = (username: string, password: string) => {
             body?: never;
             method?: NonBodyMethods;
           }
-      )
+      ),
   ) => {
     const headers = new Headers(
       resource instanceof Request
         ? resource.headers || init?.headers
-        : init?.headers
+        : init?.headers,
     );
 
     if (!headers.has("Content-Type")) {
@@ -97,7 +98,7 @@ export namespace Utils {
 }
 
 export function formatLighthouseLiveResponse(
-  res: LighthouseLiveResponse | undefined
+  res: LighthouseLiveResponse | undefined,
 ) {
   return {
     ...res,
@@ -114,7 +115,7 @@ export function formatLighthouseLiveResponse(
 function formatLighthouseResult({ categories, audits }: LighthouseResult) {
   return {
     categories: Object.entries(categories ?? {}).map(
-      ([_key, { score, title }]) => ({ title, score })
+      ([_key, { score, title }]) => ({ title, score }),
     ),
     audits: Object.entries(audits ?? {})
       .filter(([_key, val]) => typeof val.score === "number")
@@ -128,7 +129,7 @@ function formatLighthouseResult({ categories, audits }: LighthouseResult) {
           score,
           description: parseMarkdown(description),
           displayValue,
-        })
+        }),
       ),
   };
 }
