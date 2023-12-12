@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run docs && npx tsc",
+    "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "npm run docs & concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "docs": "typedoc && cat ./typedoc.css >> ./docs/assets/highlight.css"
