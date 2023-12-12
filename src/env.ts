@@ -10,6 +10,9 @@ export namespace env {
   export const MODE = process.env.MODE as "backend" | "old-school";
 
   if (!(USERNAME && PASSWORD && PORT)) {
-    throw new Error("Env variable(s) missing");
+    throw new Error(
+      "Env variable(s) missing" +
+        JSON.stringify({ USERNAME, PASSWORD, PORT }, null, 2),
+    );
   }
 }
